@@ -1,17 +1,19 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <SearchPage Todo="todos" placeholder="What needs to be done?" />
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import { defineComponent } from 'vue';
+// import All from './views/All.vue'
+import SearchPage from './components/SearchPage.vue'
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
+    // Allcopy
+    SearchPage
   }
-}
+});
 </script>
 
 <style>

@@ -1,9 +1,8 @@
 <template>
   <div class="todo">
-    <h1>todos</h1>
-    <!-- <h1>{{ props.Todo }}</h1> -->
+    <h1>{{ props.Todo }}</h1>
     <input type="checkbox" class="all_check" v-model="All_Check" @change="RevData" />
-    <input class="new-todo" placeholder="What needs to be done?" ref="cursor" v-model="title"
+    <input class="new-todo" :placeholder="props.placeholder" ref="cursor" v-model="title"
       @keyup.enter="SaveData($store.getters.get_TodoId, title)" />
     <router-view></router-view>
     <MenuList />
@@ -15,14 +14,20 @@ import { Ref, onMounted, ref } from 'vue';
 import MenuList from './MenuList.vue';
 import store from '@/store';
 
+const props = defineProps({
+  Todo: {
+    type: String,
+    required: false
+  },
+  placeholder: {
+    type: String,
+    required: false
+  },
+});
+
+const cursor: Ref = ref();
 let title: Ref<string> = ref('');
 let All_Check: boolean = false;
-const cursor: Ref = ref();
-
-// const props = defineProps<{
-//   Todo?: string,
-//   placeholder?: string,
-// }>()
 
 const SaveData = (id: number, todo_title: string) => {
   if (todo_title.trim().length > 0) {
@@ -30,6 +35,7 @@ const SaveData = (id: number, todo_title: string) => {
     title.value = '';
   }
 };
+
 const RevData = () => {
   !All_Check;
   store.commit('Reverse_Data', All_Check);

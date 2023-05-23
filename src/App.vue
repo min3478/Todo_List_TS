@@ -1,10 +1,13 @@
 <template>
-  <!-- <SearchPage Todo="todos" placeholder="What needs to be done?" /> -->
-  <SearchPage/>
+  <SearchPage :Todo="Todo" :placeholder="placeholder" />
+  <!-- <SearchPage/> -->
 </template>
 
 <script setup lang="ts">
 import SearchPage from './components/SearchPage.vue'
+
+const Todo: string = "todos";
+const placeholder: string = "What needs to be done?"
 </script>
 
 <style>

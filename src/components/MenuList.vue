@@ -6,7 +6,12 @@
 </template>
 
 <script setup lang="ts">
-const filters: Array<{ path: string, name: string }> = [
+interface Todo {
+  path: string,
+  name: string,
+}
+
+const filters: Array<Todo> = [
   { 'path': '', 'name': 'All' },
   { 'path': 'Active', 'name': 'Active' },
   { 'path': 'Completed', 'name': 'Completed' }

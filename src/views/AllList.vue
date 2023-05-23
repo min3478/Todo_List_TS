@@ -16,11 +16,11 @@
 <script setup lang="ts">
 import store from '../store'
 
-const ChangeData = () : void => {
+const ChangeData = (): void => {
   localStorage.setItem('Todo_List', JSON.stringify(store.getters.getData_All));
 };
 
-const DelData = (index: Number) : void => {
+const DelData = (index: Number): void => {
   // 해당 Todo 삭제
   store.commit('Delete_Data', index)
 };

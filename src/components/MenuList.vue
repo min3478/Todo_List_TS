@@ -10,9 +10,6 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'SearchPage',
-  props: {
-    todo_cnt : Number,
-  },
   data: function () {
     const filters : Array<{path : string, name : string}>= [
       { 'path': '', 'name': 'All' },

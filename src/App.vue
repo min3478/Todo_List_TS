@@ -2,16 +2,16 @@
   <SearchPage Todo="todos" placeholder="What needs to be done?" />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+// import { defineComponent } from 'vue';
 import SearchPage from './components/SearchPage.vue'
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    SearchPage
-  }
-});
+// export default defineComponent({
+//   name: 'App',
+//   components: {
+//     SearchPage
+//   }
+// });
 </script>
 
 <style>

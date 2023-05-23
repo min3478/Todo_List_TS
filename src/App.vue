@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-import SearchPage from './components/SearchPage.vue'
+import SearchPage from './views/SearchPage.vue'
 
 const Todo: string = "todos";
 const placeholder: string = "What needs to be done?"

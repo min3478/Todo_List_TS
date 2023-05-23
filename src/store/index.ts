@@ -7,17 +7,22 @@ interface Todo {
 }
 
 interface State {
-    Todo_List: Array<Todo>
+    Todo_List: Array<Todo>,
+    type: string,
 }
 
-const local : Array<Todo> = JSON.parse(localStorage.getItem('Todo_List') as string);
+const local: Array<Todo> = JSON.parse(localStorage.getItem('Todo_List') as string);
 
 const store = new Vuex.Store<State>({
     state: {
         Todo_List: local ? local : [],
+        type: '',
     },
 
     getters: {
+        getType: function(state): string{
+            return state.type;
+        },
         // 모든 Todo_List 반환
         getData_All: function (state): Object {
             return state.Todo_List;
@@ -41,32 +46,43 @@ const store = new Vuex.Store<State>({
     },
 
     mutations: {
-        // 추가된 Todo_List를 localStorage에 반영
-        Update_Data: function (state, payload: Todo) {
-            state.Todo_List.push(payload);
-            localStorage.setItem('Todo_List', JSON.stringify(state.Todo_List));
-        },
-        // 삭제된 Todo_List를 localStorage에 반영
-        Delete_Data: function (state, index: number) {
-            state.Todo_List.splice(index, 1);
-            localStorage.setItem('Todo_List', JSON.stringify(state.Todo_List));
-        },
-        // 모든 Todo_List를 일괄 예정, 완료 처리 후 localStorage에 반영
-        Reverse_Data: function (state, checking: boolean) {
-            if (checking === true) {
-                for (let i = 0; i < state.Todo_List.length; i++) {
-                    state.Todo_List[i].completed = true;
-                }
-            } else if (checking === false) {
-                for (let i = 0; i < state.Todo_List.length; i++) {
-                    state.Todo_List[i].completed = false;
-                }
-            }
-            localStorage.setItem('Todo_List', JSON.stringify(state.Todo_List));
-        },
+        // // 추가된 Todo_List를 localStorage에 반영
+        // Update_Data: function (state, payload: Todo) {
+        //     state.Todo_List.push(payload);
+        //     localStorage.setItem('Todo_List', JSON.stringify(state.Todo_List));
+        // },
+        // // 삭제된 Todo_List를 localStorage에 반영
+        // Delete_Data: function (state, index: number) {
+        //     state.Todo_List.splice(index, 1);
+        //     localStorage.setItem('Todo_List', JSON.stringify(state.Todo_List));
+        // },
+        // // 모든 Todo_List를 일괄 예정, 완료 처리 후 localStorage에 반영
+        // Reverse_Data: function (state, checking: boolean) {
+        //     if (checking === true) {
+        //         for (let i = 0; i < state.Todo_List.length; i++) {
+        //             state.Todo_List[i].completed = true;
+        //         }
+        //     } else if (checking === false) {
+        //         for (let i = 0; i < state.Todo_List.length; i++) {
+        //             state.Todo_List[i].completed = false;
+        //         }
+        //     }
+        //     localStorage.setItem('Todo_List', JSON.stringify(state.Todo_List));
+        // },
+        Set_Type: function (state, payload) {
+            console.log(payload)
+            return state.type = payload;
+        }
     },
 
     actions: {
+        Set_Type: function (context, type) {
+            context.commit('Set_Type', type);
+        },
+
+        Update_List: function () {
+
+        },
     }
 })
 

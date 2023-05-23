@@ -14,7 +14,7 @@ interface State {
     }>,
 }
 
-const local = JSON.parse(localStorage.getItem('Todo_List') as string);
+const local : Array<Todo> = JSON.parse(localStorage.getItem('Todo_List') as string);
 
 const store = new Vuex.Store<State>({
     state: {

@@ -7,11 +7,7 @@ interface Todo {
 }
 
 interface State {
-    Todo_List: Array<{
-        todo_id: number,
-        title: string,
-        completed: boolean
-    }>,
+    Todo_List: Array<Todo>
 }
 
 const local : Array<Todo> = JSON.parse(localStorage.getItem('Todo_List') as string);

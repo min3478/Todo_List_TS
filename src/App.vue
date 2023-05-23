@@ -4,13 +4,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-// import All from './views/All.vue'
 import SearchPage from './components/SearchPage.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    // Allcopy
     SearchPage
   }
 });

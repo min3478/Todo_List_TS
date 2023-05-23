@@ -1,6 +1,6 @@
 <template>
   <ul class="Todo-List">
-    <template v-for="(item, index) in $store.getters.getData_Active" :key="index">
+    <template v-for="(item, index) in $store.getters.getData_Active" :key="item.todo_id">
       <li v-if="item.completed === false"
         :class="{ completed: item.completed === true, active: item.completed === false }">
         <div>
@@ -11,7 +11,7 @@
       </li>
     </template>
   </ul>
-  <span>{{ $store.state.Todo_List.length }} itmes left</span>
+  <span>{{ $store.getters.get_LeftItem }} itmes left</span>
 </template>
 
 <script lang="ts">
@@ -19,19 +19,15 @@ import { defineComponent } from 'vue';
 import store from "../store"
 
 export default defineComponent({
-  name: 'CompletedList',
+  name: 'ActivedList',
   data: function () {
-    const todo_cnt: number = 0;
-    const type: String = 'Active';
-
     return {
-      todo_cnt,
-      type,
     }
   },
   methods: {
     ChangeData: function (): void {
-      localStorage.setItem('Todo_List', JSON.stringify(store.state.Todo_List));
+      console.log(store.getters.getData_All)
+      localStorage.setItem('Todo_List', JSON.stringify(store.getters.getData_All));
     },
 
     DelData: function (index: number): void {

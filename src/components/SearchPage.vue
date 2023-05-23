@@ -3,7 +3,7 @@
     <h1>{{ Todo }}</h1>
     <input type="checkbox" class="all_check" v-model="All_Check" @change="RevData" />
     <input class="new-todo" :placeholder=placeholder ref="cursor" v-model="title"
-      @keyup.enter="SaveData($store.state.Todo_List.length, title)" />
+      @keyup.enter="SaveData($store.getters.get_TodoId, title)" />
     <router-view></router-view>
     <MenuList />
   </div>
@@ -20,11 +20,6 @@ export default defineComponent({
     Todo: String,
     placeholder: String,
   },
-  // setup : function(){
-  // const Todo_List = computed(()=> store.state.Todo_List);
-  // const todo_id = computed(() => store.state.Todo_Id);
-  // return {Todo_List, todo_id};
-  // },
   data: function () {
     const title: string = '';
     const All_Check: boolean = false;

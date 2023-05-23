@@ -1,8 +1,7 @@
 <template>
   <ul class="Todo-List">
     <template v-for="(item, index) in $store.getters.getData_Active" :key="item.todo_id">
-      <li v-if="item.completed === false"
-        :class="{ completed: item.completed === true, active: item.completed === false }">
+      <li :class="{ completed: item.completed === true, active: item.completed === false }">
         <div>
           <input type="checkbox" class="check-box" v-model="item.completed" @change="ChangeData">
           <label>{{ item.title }}</label>
@@ -14,28 +13,17 @@
   <span>{{ $store.getters.get_LeftItem }} itmes left</span>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import store from "../store"
+<script setup lang="ts">
+import store from '../store'
 
-export default defineComponent({
-  name: 'ActivedList',
-  data: function () {
-    return {
-    }
-  },
-  methods: {
-    ChangeData: function (): void {
-      console.log(store.getters.getData_All)
-      localStorage.setItem('Todo_List', JSON.stringify(store.getters.getData_All));
-    },
+const ChangeData = (): void => {
+  localStorage.setItem('Todo_List', JSON.stringify(store.getters.getData_All));
+};
 
-    DelData: function (index: number): void {
-      // 해당 Todo 삭제
-      store.commit('Delete_Data', index)
-    },
-  }
-});
+const DelData = (index: number): void => {
+  // 해당 Todo 삭제
+  store.commit('Delete_Data', index)
+};
 </script>
 
 <style>

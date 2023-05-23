@@ -13,27 +13,17 @@
   <span>{{ $store.getters.get_LeftItem }} itmes left</span>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import store from '../store'
 
-export default defineComponent({
-  name: 'CompletedList',
-  data: function () {
-    return {
-    }
-  },
-  methods: {
-    ChangeData: function (): void {
-      localStorage.setItem('Todo_List', JSON.stringify(store.getters.getData_All));
-    },
+const ChangeData = (): void => {
+  localStorage.setItem('Todo_List', JSON.stringify(store.getters.getData_All));
+};
 
-    DelData: function (index: number): void {
-      // 해당 Todo 삭제
-      store.commit('Delete_Data', index)
-    },
-  }
-});
+const DelData = (index: number): void => {
+  // 해당 Todo 삭제
+  store.commit('Delete_Data', index)
+};
 </script>
 
 <style>

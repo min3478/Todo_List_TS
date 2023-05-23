@@ -1,8 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
-import AllList from "@/views/All.vue";
-import ActiveList from "@/views/Active.vue";
-import CompletedList from "@/views/Completed.vue";
-
+import AllList from "@/views/AllList.vue";
+import ActiveList from "@/views/ActiveList.vue";
+import CompletedList from "@/views/CompletedList.vue";
 
 const routes = [
   {

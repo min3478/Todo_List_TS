@@ -5,24 +5,14 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'SearchPage',
-  data: function () {
-    const filters : Array<{path : string, name : string}>= [
-      { 'path': '', 'name': 'All' },
-      { 'path': 'Active', 'name': 'Active' },
-      { 'path': 'Completed', 'name': 'Completed' },
-    ]
-    return {
-      filters
-    }
-  },
-});
+<script setup lang="ts">
+const filters: Array<{ path: string, name: string }> = [
+  { 'path': '', 'name': 'All' },
+  { 'path': 'Active', 'name': 'Active' },
+  { 'path': 'Completed', 'name': 'Completed' }
+];
 </script>
-
+ 
 <style scoped>
 .filters {
   padding: 15px;

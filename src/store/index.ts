@@ -20,7 +20,7 @@ const store = new Vuex.Store<State>({
     state: {
         Todo_List: local ? local : [],
         Type: 'All',
-        ID: local && local.toString() !== '' ? Math.max.apply(0, local.map((ele) => ele.todo_id)) + 1 : 1,
+        ID: local && local.toString() !== '' ? Math.max.apply(null, local.map((ele) => ele.todo_id)) + 1 : 1,
     },
 
     getters: {

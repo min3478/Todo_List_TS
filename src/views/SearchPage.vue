@@ -2,10 +2,9 @@
   <div class="todo">
     <h1>{{ props.Todo }}</h1>
     <input type="checkbox" class="all_check" v-model="All_Check" @change="RevData" />
-    <input class="new-todo" :placeholder="props.placeholder" ref="cursor" v-model="title"
-      @keyup.enter="SaveData($store.getters.get_TodoId, title)" />
+    <input class="new-todo" :placeholder="props.placeholder" ref="cursor" v-model="title" @keyup.enter="AddData(title)" />
     <TodoList />
-    <MenuList/>
+    <MenuList />
   </div>
 </template>
 
@@ -27,22 +26,27 @@ const props = defineProps({
 });
 
 const cursor: Ref = ref();
+// 추가할 Todo_List 제목
 let title: Ref<string> = ref('');
+// 체크박스 전체 체크 및 해제
 let All_Check: boolean = false;
 
-const SaveData = (id: number, todo_title: string) => {
+// // Todo_List 추가
+const AddData = (todo_title: string) => {
   if (todo_title.trim().length > 0) {
-    store.commit('Update_Data', { 'todo_id': id, 'title': todo_title, 'completed': false });
+    store.dispatch('addData', todo_title);
     title.value = '';
   }
 };
 
+// Todo_List 전체 체크 및 해제
 const RevData = () => {
   !All_Check;
-  store.commit('Reverse_Data', All_Check);
+  store.dispatch('reverseData', All_Check)
 }
 
 onMounted(() => {
+  // input-box 포커스
   cursor.value.focus();
 });
 

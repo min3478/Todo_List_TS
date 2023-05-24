@@ -1,6 +1,5 @@
 <template>
   <SearchPage :Todo="Todo" :placeholder="placeholder" />
-  <!-- <SearchPage/> -->
 </template>
 
 <script setup lang="ts">

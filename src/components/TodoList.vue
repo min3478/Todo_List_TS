@@ -1,6 +1,6 @@
 <template>
   <ul class="Todo-List">
-    <template v-for="(item, index) in $store.getters.getData_All" :key="item.todo_id">
+    <template v-for="(item, index) in $store.getters.getList" :key="item.todo_id">
       <li :class="{ completed: item.completed === true, active: item.completed === false }">
         <div>
           <input type="checkbox" class="check-box" v-model="item.completed" @change="ChangeData">
@@ -10,26 +10,19 @@
       </li>
     </template>
   </ul>
-  <span>{{ $store.getters.get_LeftItem }} itmes left</span>
-  <span>{{ type }}321</span>
+  <span>{{ $store.getters.getLeftItem }} itmes left</span>
 </template>
 
 <script setup lang="ts">
-import store from '../store'
-
-// defineProps({
-//   'type' : {type : String, required : true}
-// });
+import store from '../store';
 
 const ChangeData = (): void => {
-  localStorage.setItem('Todo_List', JSON.stringify(store.getters.getData_All));
+  store.dispatch('reverseData');
 };
 
-const type : string = store.getters.getType;
-console.log(type);
+// 해당 Todo 삭제
 const DelData = (index: number): void => {
-  // 해당 Todo 삭제
-  store.commit('Delete_Data', index)
+  store.dispatch('deleteData', index);
 };
 </script>
 

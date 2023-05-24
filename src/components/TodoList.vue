@@ -16,6 +16,7 @@
 <script setup lang="ts">
 import store from '../store';
 
+// 해당 Todo 상태 변경
 const ChangeData = (): void => {
   store.dispatch('reverseData');
 };

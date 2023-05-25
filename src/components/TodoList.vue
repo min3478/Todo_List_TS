@@ -1,11 +1,26 @@
 <template>
   <ul class="Todo-List">
-    <template v-for="(item, index) in $store.getters.getList" :key="item.todo_id">
-      <li :class="{ completed: item.completed === true, active: item.completed === false }">
+    <template
+      v-for="(item, index) in $store.getters.getList"
+      :key="item.todo_id"
+    >
+      <li
+        :class="{
+          completed: item.completed === true,
+          active: item.completed === false,
+        }"
+      >
         <div>
-          <input type="checkbox" class="check-box" v-model="item.completed" @change="ChangeData">
+          <input
+            type="checkbox"
+            class="check-box"
+            v-model="item.completed"
+            @change="changeData"
+          />
           <label>{{ item.title }}</label>
-          &nbsp;&nbsp;&nbsp;<button class="del-todo" @click="DelData(index)">X</button>
+          &nbsp;&nbsp;&nbsp;<button class="del-todo" @click="delData(index)">
+            X
+          </button>
         </div>
       </li>
     </template>
@@ -14,17 +29,17 @@
 </template>
 
 <script setup lang="ts">
-import store from '../store';
+import store from "../store";
 
 // 해당 Todo 상태 변경
-const ChangeData = (): void => {
-  store.dispatch('reverseData');
-};
+function changeData(): void {
+  store.dispatch("reverseData");
+}
 
 // 해당 Todo 삭제
-const DelData = (index: number): void => {
-  store.dispatch('deleteData', index);
-};
+function delData(index: number): void {
+  store.dispatch("deleteData", index);
+}
 </script>
 
 <style>

@@ -54,6 +54,18 @@ const store = new Vuex.Store<State>({
 		getType(state): string {
 			return state.type;
 		},
+
+		// todoId 중복 체크
+		isDuplicate(state): boolean{
+			const set = new Set(
+				state.todo_list.map((ele) => ele.todoId)
+			);
+			if (Array.from(set).length === state.todo_list.length) {
+				return true;
+			}
+
+			return false;
+		}
 	},
 
 	mutations: {
@@ -104,7 +116,7 @@ const store = new Vuex.Store<State>({
 	actions: {
 		// Todo List 추가
 		addData(context, title: string): void {
-			context.commit('ADD_TODO_LIST', { 'todo_id': this.state.id, 'title': title, 'completed': false });
+			context.commit('ADD_TODO_LIST', { 'todoId': this.state.id, 'title': title, 'completed': false });
 		},
 
 		// Todo List 삭제

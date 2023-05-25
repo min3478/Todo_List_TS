@@ -25,12 +25,6 @@
   import MenuList from '../components/MenuList.vue';
   import store from '@/store';
 
-  interface Todo {
-    todoId: number;
-    title: string;
-    completed: boolean;
-  }
-
   const cursor: Ref = ref();
   // 추가할 Todo_List 제목
   let title: Ref<string> = ref('');
@@ -59,7 +53,7 @@
   // // Todo_List 추가
   function addData(todo_title: string) {
     if (todo_title.trim().length > 0) {
-      if (isDuplicate()) {
+      if (store.getters.isDuplicate) {
         store.dispatch('addData', todo_title);
         title.value = '';
       } else {
@@ -74,16 +68,16 @@
     store.dispatch('reverseData', allCheck);
   }
 
-  // 중복 체크
-  function isDuplicate(): boolean {
-    const set: Set<boolean> = new Set(
-      (store.getters.getListAll as Array<Todo>).map((ele) => ele.completed)
-    );
-    if (Array.from(set).length === store.getters.getListAll.lenth) {
-      return false;
-    }
-    return true;
-  }
+  // // 중복 체크
+  // function isDuplicate(): boolean {
+  //   const set: Set<boolean> = new Set(
+  //     (store.getters.getListAll as Array<Todo>).map((ele) => ele.completed)
+  //   );
+  //   if (Array.from(set).length === store.getters.getListAll.lenth) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
 </script>
 
 <style scoped>
